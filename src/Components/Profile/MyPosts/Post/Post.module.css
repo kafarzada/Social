@@ -1,0 +1,23 @@
+.item {
+    box-shadow: rgb(190, 190, 190) 0 0 10px ;
+    border: none;
+    margin-bottom: 10px;
+    padding: 20px;
+    border-radius: 20px;
+    display: flex;
+    flex-direction: column;
+}
+
+
+
+.item img {
+    width: 50px;
+    border-radius: 50%;
+}
+
+.itemLike {
+    text-align: right;
+    color: rgb(5, 180, 5);
+    font-weight: 700;
+}
+

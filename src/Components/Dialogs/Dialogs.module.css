@@ -1,0 +1,65 @@
+.dialogs {
+    display: flex;
+    flex-direction: row;
+    height: 90%;
+}
+
+.dialogsItems{
+    padding: 10px;
+    overflow: hidden;
+    overflow-y: auto;
+    height: 100%;
+}
+
+.dialogsItems .active {
+    color: gold;
+}
+
+.dialog a {
+    color: black;
+    font-size: 20px;
+    text-decoration: none;
+}
+
+.messages{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 10px;
+    flex: 1 1 700px
+}
+
+.message{}
+
+.messageItems {
+    display: flex;
+    flex-direction: column;
+}
+
+.newMessage {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+}
+
+.newMessage textarea {
+    width: 100%;
+    height: 80px;
+    resize: none;
+    padding: 10px;
+    margin-bottom: 10px;
+}
+
+.newMessage button {
+    background-color: black;
+    border: none;
+    color: white;
+    display: block;
+    padding: 10px;
+    outline: none;
+    cursor: pointer;
+}
+
+.newMessage button:hover {
+    background-color: rgb(46, 46, 46);
+}

@@ -1,0 +1,13 @@
+
+.header {
+    grid-area: h;
+    background-color:black;
+    color: white;
+    text-align: center;
+  }
+
+
+  .header__img {
+    width: 50px;
+  }
+  

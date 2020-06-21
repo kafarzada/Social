@@ -1,0 +1,17 @@
+.postsBlock {
+    padding: 10px;
+}
+
+.posts {
+    margin-top: 10px;
+}
+
+.newPostTextarea {
+    resize: none;
+    width: 100%;
+    height: 80px;
+    padding: 10px;
+    overflow:auto;
+    border-radius: 10px;
+    outline: none;
+}

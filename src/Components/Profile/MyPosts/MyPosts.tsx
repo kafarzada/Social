@@ -10,10 +10,11 @@ type MyPostType = {
 }
 
 const MyPosts = (props: MyPostType) => {
+
     let postsElement =props.posts.map(p => {
         return <Post id={p.id} message={p.message} likesCount={p.likesCount}/>
     })
-
+    
     const addPost = () => {
         props.dispatch(AddPostActionCreator())
     }
@@ -30,7 +31,7 @@ const MyPosts = (props: MyPostType) => {
             <div>
                 <div>
                     <textarea 
-                        onChange={(e) => {onPostChange(e)}}
+                        onChange={onPostChange}
                         value={props.newPostText}
                         className={classes.newPostTextarea}
                         placeholder="Новый пост"/>

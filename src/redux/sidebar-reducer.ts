@@ -1,7 +1,8 @@
 import {SidebarType } from './state';
+import { ActionType } from './profile-reducer';
 
-let initialState = {}
-const sidebarReducer = (state: SidebarType = initialState, action:any) => {
+let initialState:SidebarType = {}
+const sidebarReducer = (state: SidebarType = initialState, action:ActionType) => {
 
     return state
 }

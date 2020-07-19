@@ -1,32 +1,37 @@
-import React from 'react';
+import React, { ChangeEvent } from 'react';
 import classes from './Dialogs.module.css';
 import Message from "./Message/Message";
 import DialogItem from "./DialogItem/DialogItem";
-import { DialogPageType } from '../../redux/state';
+import {  StoreType } from '../../redux/state';
+import { sendMessageActionCreator, updateNewMessageBodyActionCreator } from '../../redux/dialogs-reducer';
 
 type PropsType = {
-    dialogs: DialogPageType
+    store: StoreType
 }
 
 const Dialogs = (props:PropsType) => {
 
+    let state = props.store.getState().dialogsPage;
 
-
-    let dialogsElements = props.dialogs.dialogs.map( item => {
+    let dialogsElements = state.dialogs.map( item => {
         return <DialogItem name={item.name} id={item.id}/>
     })
 
     
-    let messagesElements = props.dialogs.messages.map(item => {
+    let messagesElements = state.messages.map(item => {
         return <Message id={item.id} message={item.message}/>
     })
+    let newMessageBody = state.newMessageBody
 
-    let postMessageRef = React.createRef<HTMLTextAreaElement>();
+    let onSendMessageClick = () => {
+        props.store.dispatch(sendMessageActionCreator())
+    }
 
-
-
-
-
+    let onNewMessageChange = (e:ChangeEvent<HTMLTextAreaElement>) => {
+        let body = e.target.value;
+        props.store.dispatch(updateNewMessageBodyActionCreator(body))
+        debugger
+    }
 
     // =======================JSX==============================
     return (
@@ -37,14 +42,13 @@ const Dialogs = (props:PropsType) => {
             <div className={classes.messages}>
 
                 <div className={classes.messageItems}>
-                {messagesElements}
-
+                    {messagesElements}
                 </div>
 
                 <div className={classes.newMessage}>
 
-                    <textarea ref={postMessageRef} placeholder={"Сообщение..."}></textarea>
-                    <div><button>Отправить</button></div>
+                <textarea value={newMessageBody} onChange={onNewMessageChange} placeholder={"Сообщение..."}></textarea>
+                    <div><button onClick={ onSendMessageClick } >Отправить</button></div>
                
                 </div>
 

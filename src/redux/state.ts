@@ -3,13 +3,15 @@ import profileReducer, { ActionType } from './profile-reducer';
 import dialogReducer from './dialogs-reducer';
 import sidebarReducer from './sidebar-reducer';
 
-type StoreType = {
+export type StoreType = {
     _state: RootStateType
     subscribe:(observer:()=>void) => void
     _callSubscriber: (state: RootStateType) => void
     getState: () => RootStateType
     dispatch: (action: ActionType) => void
 }
+
+
 
 
 
@@ -41,8 +43,8 @@ export let store: StoreType = {
                 {id: v1(), message: "Yo"},
                 {id: v1(), message: "Yo"},
                 {id: v1(), message: "Yo"},
-                
-            ]
+            ],
+            newMessageBody: ''
         },
 
         sidebar: {}
@@ -93,7 +95,8 @@ export type ProfilePageType = {
 
  export  type DialogPageType = {
     dialogs: Array<DialogType>,
-    messages: Array<MessageType>
+    messages: Array<MessageType>,
+    newMessageBody: string
 }
 
 export type SidebarType = {}
@@ -104,4 +107,5 @@ export type RootStateType = {
     dialogsPage: DialogPageType,
     sidebar: SidebarType
 }
+
 export default store;

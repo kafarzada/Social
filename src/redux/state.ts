@@ -2,6 +2,7 @@ import {v1} from 'uuid';
 import profileReducer, { ActionType } from './profile-reducer';
 import dialogReducer from './dialogs-reducer';
 import sidebarReducer from './sidebar-reducer';
+import { Store, CombinedState } from 'redux';
 
 export type StoreType = {
     _state: RootStateType
@@ -107,5 +108,7 @@ export type RootStateType = {
     dialogsPage: DialogPageType,
     sidebar: SidebarType
 }
+
+
 
 export default store;

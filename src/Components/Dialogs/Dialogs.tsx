@@ -2,35 +2,34 @@ import React, { ChangeEvent } from 'react';
 import classes from './Dialogs.module.css';
 import Message from "./Message/Message";
 import DialogItem from "./DialogItem/DialogItem";
-import {  StoreType } from '../../redux/state';
-import { sendMessageActionCreator, updateNewMessageBodyActionCreator } from '../../redux/dialogs-reducer';
+import { DialogPageType } from '../../redux/state';
 
 type PropsType = {
-    store: StoreType
+    sendMessage: () => void
+    updateNewMessageBody:(body: string) => void
+    dialogsPage: DialogPageType
 }
 
 const Dialogs = (props:PropsType) => {
 
-    let state = props.store.getState().dialogsPage;
 
-    let dialogsElements = state.dialogs.map( item => {
+    let dialogsElements = props.dialogsPage.dialogs.map( item => {
         return <DialogItem name={item.name} id={item.id}/>
     })
 
     
-    let messagesElements = state.messages.map(item => {
+    let messagesElements = props.dialogsPage.messages.map(item => {
         return <Message id={item.id} message={item.message}/>
     })
-    let newMessageBody = state.newMessageBody
+    let newMessageBody = props.dialogsPage.newMessageBody
 
     let onSendMessageClick = () => {
-        props.store.dispatch(sendMessageActionCreator())
+        props.sendMessage()
     }
 
     let onNewMessageChange = (e:ChangeEvent<HTMLTextAreaElement>) => {
         let body = e.target.value;
-        props.store.dispatch(updateNewMessageBodyActionCreator(body))
-        debugger
+        props.updateNewMessageBody(body);
     }
 
     // =======================JSX==============================
@@ -40,18 +39,13 @@ const Dialogs = (props:PropsType) => {
                 {dialogsElements}
             </div>
             <div className={classes.messages}>
-
                 <div className={classes.messageItems}>
                     {messagesElements}
                 </div>
-
                 <div className={classes.newMessage}>
-
                 <textarea value={newMessageBody} onChange={onNewMessageChange} placeholder={"Сообщение..."}></textarea>
                     <div><button onClick={ onSendMessageClick } >Отправить</button></div>
-               
                 </div>
-
             </div>
         </div>
     )

@@ -41,10 +41,6 @@ const profileReducer = (state: ProfilePageType = initialState,action: ActionType
     }
 }
 
-
-
-
-
 export const UpdateNewPostTextActionCreactor = (newText: string):updateNewpostTextActionType => {
     return {
         type: 'UPDATE_NEWPOST_TEXT',

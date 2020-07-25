@@ -28,14 +28,18 @@ export type  ActionType = updateNewpostTextActionType |
 
 const profileReducer = (state: ProfilePageType = initialState,action: ActionType) => {
     switch (action.type) {
-        case "ADD_POST":
+        case "ADD_POST": 
             const newPost:PostType = {id: v1(), message: state.newPostText, likesCount:0};
-            state.posts.push(newPost);
-            state.newPostText = '';
-            return state
-        case "UPDATE_NEWPOST_TEXT":
-            state.newPostText = action.newText;
-            return state
+            return {
+                ...state,
+                posts: [...state.posts, newPost],
+                newPostText: ''
+            }
+        case "UPDATE_NEWPOST_TEXT": 
+            return {
+                ...state,
+                newPostText: action.newText
+            }
         default: 
             return state
     }

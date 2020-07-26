@@ -25,7 +25,7 @@ let initialState:DialogPageType = {
 
 
 
-const dialogReducer = (state: DialogPageType = initialState, action:ActionType) => {
+const dialogReducer = (state: DialogPageType = initialState, action:ActionType):DialogPageType => {
 
 
     switch (action.type) { 

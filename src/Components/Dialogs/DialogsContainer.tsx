@@ -1,12 +1,12 @@
 import { sendMessageActionCreator, updateNewMessageBodyActionCreator } from '../../redux/dialogs-reducer';
 import Dialogs from './Dialogs';
 import { connect } from 'react-redux';
-import { RootStateType } from '../../redux/state';
 import { ActionType } from '../../redux/profile-reducer';
+import { AppStateType } from '../../redux/redux-store';
 
 
 
-let mapStateToProps = (state:RootStateType) => {
+let mapStateToProps = (state:AppStateType) => {
     return {
         dialogsPage: state.dialogsPage
     }

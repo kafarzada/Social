@@ -8,13 +8,19 @@ type locationType = {
     country: string
     city: string
 }
+
+type photoType = {
+    small: string
+    large: string
+}
 export type usersType = {
     id: string
     followed: boolean
-    fullname: string
-    photoURl: string
+    name: string
+    photos: photoType
     status: string
-    location: locationType
+    uniqueUrlName: string
+    //location: locationType
 }
 
 type UsersPageType = {
@@ -23,12 +29,12 @@ type UsersPageType = {
 
 let initialState:UsersPageType  = {
     users: [
-        {id: v1(), followed: false, fullname: 'Dmitry', status: "I am a boss", 
-                                photoURl:'https://ru.meming.world/images/ru/thumb/a/ab/%D0%9F%D1%80%D0%BE%D0%BA%D0%BB%D1%8F%D1%82%D1%8B%D0%B9_%D0%BA%D0%BE%D1%82_%D1%88%D0%B0%D0%B1%D0%BB%D0%BE%D0%BD.jpg/300px-%D0%9F%D1%80%D0%BE%D0%BA%D0%BB%D1%8F%D1%82%D1%8B%D0%B9_%D0%BA%D0%BE%D1%82_%D1%88%D0%B0%D0%B1%D0%BB%D0%BE%D0%BD.jpg', location: {country: "Russia", city: "Moscow"} },
-        {id: v1(), followed: true, fullname: 'Pert', status: "I am a boss", 
-                                photoURl:'https://ru.meming.world/images/ru/thumb/a/ab/%D0%9F%D1%80%D0%BE%D0%BA%D0%BB%D1%8F%D1%82%D1%8B%D0%B9_%D0%BA%D0%BE%D1%82_%D1%88%D0%B0%D0%B1%D0%BB%D0%BE%D0%BD.jpg/300px-%D0%9F%D1%80%D0%BE%D0%BA%D0%BB%D1%8F%D1%82%D1%8B%D0%B9_%D0%BA%D0%BE%D1%82_%D1%88%D0%B0%D0%B1%D0%BB%D0%BE%D0%BD.jpg', location: {country: "Russia", city: "Kazan"} },
-        {id: v1(), followed: false, fullname: 'Max', status: "I am a boss",  
-                                photoURl:'https://ru.meming.world/images/ru/thumb/a/ab/%D0%9F%D1%80%D0%BE%D0%BA%D0%BB%D1%8F%D1%82%D1%8B%D0%B9_%D0%BA%D0%BE%D1%82_%D1%88%D0%B0%D0%B1%D0%BB%D0%BE%D0%BD.jpg/300px-%D0%9F%D1%80%D0%BE%D0%BA%D0%BB%D1%8F%D1%82%D1%8B%D0%B9_%D0%BA%D0%BE%D1%82_%D1%88%D0%B0%D0%B1%D0%BB%D0%BE%D0%BD.jpg',location: {country: "France", city: "Paris"} }
+        // {id: v1(), followed: false, fullname: 'Dmitry', status: "I am a boss", 
+        //                         photoURl:'https://ru.meming.world/images/ru/thumb/a/ab/%D0%9F%D1%80%D0%BE%D0%BA%D0%BB%D1%8F%D1%82%D1%8B%D0%B9_%D0%BA%D0%BE%D1%82_%D1%88%D0%B0%D0%B1%D0%BB%D0%BE%D0%BD.jpg/300px-%D0%9F%D1%80%D0%BE%D0%BA%D0%BB%D1%8F%D1%82%D1%8B%D0%B9_%D0%BA%D0%BE%D1%82_%D1%88%D0%B0%D0%B1%D0%BB%D0%BE%D0%BD.jpg', location: {country: "Russia", city: "Moscow"} },
+        // {id: v1(), followed: true, fullname: 'Pert', status: "I am a boss", 
+        //                         photoURl:'https://ru.meming.world/images/ru/thumb/a/ab/%D0%9F%D1%80%D0%BE%D0%BA%D0%BB%D1%8F%D1%82%D1%8B%D0%B9_%D0%BA%D0%BE%D1%82_%D1%88%D0%B0%D0%B1%D0%BB%D0%BE%D0%BD.jpg/300px-%D0%9F%D1%80%D0%BE%D0%BA%D0%BB%D1%8F%D1%82%D1%8B%D0%B9_%D0%BA%D0%BE%D1%82_%D1%88%D0%B0%D0%B1%D0%BB%D0%BE%D0%BD.jpg', location: {country: "Russia", city: "Kazan"} },
+        // {id: v1(), followed: false, fullname: 'Max', status: "I am a boss",  
+        //                         photoURl:'https://ru.meming.world/images/ru/thumb/a/ab/%D0%9F%D1%80%D0%BE%D0%BA%D0%BB%D1%8F%D1%82%D1%8B%D0%B9_%D0%BA%D0%BE%D1%82_%D1%88%D0%B0%D0%B1%D0%BB%D0%BE%D0%BD.jpg/300px-%D0%9F%D1%80%D0%BE%D0%BA%D0%BB%D1%8F%D1%82%D1%8B%D0%B9_%D0%BA%D0%BE%D1%82_%D1%88%D0%B0%D0%B1%D0%BB%D0%BE%D0%BD.jpg',location: {country: "France", city: "Paris"} }
     ]
 };
 

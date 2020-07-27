@@ -1,5 +1,4 @@
 import { connect } from 'react-redux';
-import Users from './Users';
 import { AppStateType } from '../../redux/redux-store';
 import {
     ActionType,
@@ -8,6 +7,8 @@ import {
     unFollowActionCreator,
     usersType
 } from "../../redux/usersReducer";
+
+import Users from './Users';
 
 
 const mapStateToProps = (state:AppStateType) => {

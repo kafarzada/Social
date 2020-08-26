@@ -1,8 +1,12 @@
 import {v1} from "uuid";
+import { act } from "react-dom/test-utils";
 
 const FOLLOW = 'FOLLOW'
 const UNFOLLOW = 'UNFOLLOW'
 const SET_USERS = 'SET_USERS'
+const SET_CURRENT_PAGE = 'SET_CURRENT_PAGE'
+const SET_TOTAL_USERS_COUNT = 'SET_TOTAL_USERS_COUNT'
+const TOGGLE_IS_FETCHING = 'TOGGLE_IS_FETCHING'
 
 type locationType = {
     country: string
@@ -20,25 +24,30 @@ export type usersType = {
     photos: photoType
     status: string
     uniqueUrlName: string
-    //location: locationType
 }
 
 type UsersPageType = {
     users: Array<usersType>
+    currentPage: number
+    pageSize: number
+    totalUsersCount: number
+    isFetching: boolean
 };
 
 let initialState:UsersPageType  = {
-    users: [
-        // {id: v1(), followed: false, fullname: 'Dmitry', status: "I am a boss", 
-        //                         photoURl:'https://ru.meming.world/images/ru/thumb/a/ab/%D0%9F%D1%80%D0%BE%D0%BA%D0%BB%D1%8F%D1%82%D1%8B%D0%B9_%D0%BA%D0%BE%D1%82_%D1%88%D0%B0%D0%B1%D0%BB%D0%BE%D0%BD.jpg/300px-%D0%9F%D1%80%D0%BE%D0%BA%D0%BB%D1%8F%D1%82%D1%8B%D0%B9_%D0%BA%D0%BE%D1%82_%D1%88%D0%B0%D0%B1%D0%BB%D0%BE%D0%BD.jpg', location: {country: "Russia", city: "Moscow"} },
-        // {id: v1(), followed: true, fullname: 'Pert', status: "I am a boss", 
-        //                         photoURl:'https://ru.meming.world/images/ru/thumb/a/ab/%D0%9F%D1%80%D0%BE%D0%BA%D0%BB%D1%8F%D1%82%D1%8B%D0%B9_%D0%BA%D0%BE%D1%82_%D1%88%D0%B0%D0%B1%D0%BB%D0%BE%D0%BD.jpg/300px-%D0%9F%D1%80%D0%BE%D0%BA%D0%BB%D1%8F%D1%82%D1%8B%D0%B9_%D0%BA%D0%BE%D1%82_%D1%88%D0%B0%D0%B1%D0%BB%D0%BE%D0%BD.jpg', location: {country: "Russia", city: "Kazan"} },
-        // {id: v1(), followed: false, fullname: 'Max', status: "I am a boss",  
-        //                         photoURl:'https://ru.meming.world/images/ru/thumb/a/ab/%D0%9F%D1%80%D0%BE%D0%BA%D0%BB%D1%8F%D1%82%D1%8B%D0%B9_%D0%BA%D0%BE%D1%82_%D1%88%D0%B0%D0%B1%D0%BB%D0%BE%D0%BD.jpg/300px-%D0%9F%D1%80%D0%BE%D0%BA%D0%BB%D1%8F%D1%82%D1%8B%D0%B9_%D0%BA%D0%BE%D1%82_%D1%88%D0%B0%D0%B1%D0%BB%D0%BE%D0%BD.jpg',location: {country: "France", city: "Paris"} }
-    ]
+    users: [],
+    currentPage: 1,
+    pageSize: 10,
+    totalUsersCount: 0,
+    isFetching: false
 };
 
-export type ActionType = followActionType | unFollowActionType | SetUsersActionType;
+export type ActionType = followActionType 
+                        | unFollowActionType
+                        | SetUsersActionType
+                        | SetCurrentPageActionType
+                        | setTotalUsersCountActionType
+                        | ToggleIsFetchingActionType;
 
 const usersReducer = (state: UsersPageType = initialState, action:ActionType): UsersPageType => {
 
@@ -65,8 +74,24 @@ const usersReducer = (state: UsersPageType = initialState, action:ActionType): U
                     }
                 })
             }
+
         case SET_USERS:
-            return {...state, users: [...state.users, ...action.users]}
+            return {...state, users: action.users}
+
+        case SET_CURRENT_PAGE:
+            return {...state,
+                    currentPage: action.currentPage
+            }
+        
+        case SET_TOTAL_USERS_COUNT:
+            return {...state,
+                totalUsersCount: action.totalUsersCount
+            }
+        case TOGGLE_IS_FETCHING:
+            return {
+                ...state,
+                isFetching: action.isFetching
+            }
         default:
             return state
     }
@@ -86,6 +111,21 @@ type SetUsersActionType = {
     users: Array<usersType>
 };
 
+type SetCurrentPageActionType = {
+    type: typeof SET_CURRENT_PAGE
+    currentPage: number
+}
+
+type setTotalUsersCountActionType = {
+    type: typeof SET_TOTAL_USERS_COUNT
+    totalUsersCount: number
+}
+
+type ToggleIsFetchingActionType = {
+    type: typeof TOGGLE_IS_FETCHING
+    isFetching: boolean
+}
+
 export const followActionCreator = (id: string):followActionType => {
     return {
         type: FOLLOW,
@@ -104,6 +144,27 @@ export const SetUsersActionCreator = (users: Array<usersType>):SetUsersActionTyp
     return {
         type: SET_USERS,
         users: users
+    }
+}
+
+export const SetCurrentPageActionCreator = (currentPage: number):SetCurrentPageActionType => {
+    return {
+        type: SET_CURRENT_PAGE,
+        currentPage: currentPage
+    }
+}
+
+export const SetTotalUsersCountActionCreator = (totalUsersCount: number): setTotalUsersCountActionType => {
+    return {
+        type: SET_TOTAL_USERS_COUNT,
+        totalUsersCount: totalUsersCount
+    }
+}
+
+export const ToggleIsFetchingActionCreator = (isFetching: boolean): ToggleIsFetchingActionType => {
+    return {
+        type: TOGGLE_IS_FETCHING,
+        isFetching: isFetching
     }
 }
 

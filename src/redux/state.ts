@@ -24,7 +24,27 @@ export let store: StoreType = {
                 {id: v1(), message: "Hi, How are You?", likesCount: 12},
                 {id: v1(), message: "Blabla", likesCount: 100},
                 {id: v1(), message: "Dada", likesCount: 12}
-            ]
+            ],
+            profile: {
+                id:'',
+                lookingForAJob:false,
+                lookingForAJobDescription:'',
+                fullName: '',
+                contacts: {
+                    gitHub:'',
+                    vk: '',
+                    instagram:'',
+                    facebook:'',
+                    twitter:'',
+                    youtube:'',
+                    mainLink:'',
+                    website:''
+                },
+                photos: {
+                    small:'',
+                    large:'',
+                }
+            }
         },
     
         dialogsPage: {
@@ -88,9 +108,35 @@ export type PostType = {
     likesCount: number
 }
 
+type ContactsType = {
+    gitHub: string
+    vk: string
+    facebook: string
+    instagram: string
+    twitter: string
+    website: string
+    youtube: string
+    mainLink: string
+}
+
+type PhotosType = {
+    small: string
+    large: string
+}
+
+export type ProfileType = {
+    id: string
+    lookingForAJob: boolean
+    lookingForAJobDescription: string
+    fullName: string
+    contacts: ContactsType
+    photos: PhotosType 
+}
+
 export type ProfilePageType = {
     posts: Array<PostType>,
     newPostText:string
+    profile: ProfileType 
 }
 
  export  type DialogPageType = {

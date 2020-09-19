@@ -1,5 +1,4 @@
-import {v1} from "uuid";
-import { act } from "react-dom/test-utils";
+
 
 const FOLLOW = 'FOLLOW'
 const UNFOLLOW = 'UNFOLLOW'
@@ -53,6 +52,7 @@ const usersReducer = (state: UsersPageType = initialState, action:ActionType): U
 
     switch (action.type) {
         case FOLLOW:
+            debugger
             return {
                 ...state,
                 users: state.users.map(item => {
@@ -64,6 +64,7 @@ const usersReducer = (state: UsersPageType = initialState, action:ActionType): U
                 })
             }
         case UNFOLLOW:
+            debugger
             return {
                 ...state,
                 users: state.users.map(item => {

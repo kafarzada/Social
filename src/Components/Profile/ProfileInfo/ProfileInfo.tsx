@@ -12,6 +12,8 @@ const ProfileInfo = (props:ProfilePropsType) => {
                 <img src={props.profile.photos.large} alt=""/>
                 ava + description
             </div>
+             <div>{props.profile.fullName}</div>
+
         </div>
     )
 }

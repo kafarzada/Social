@@ -3,6 +3,7 @@ import s from './Users.module.css'
 import { usersType } from '../../redux/usersReducer';
 import userPhoto from './../../assets/images/user-img.png'
 import { NavLink } from 'react-router-dom';
+import axios from 'axios';
 
 type UsersPropsType = {
     totalUsersCount: number
@@ -43,8 +44,38 @@ const Users = (props:UsersPropsType) => {
                 <div>
                     {
                         item.followed 
-                            ? <button onClick={ () => { props.unFollow(item.id)} }>Unfollow</button>
-                            : <button onClick={ () => { props.follow(item.id)} }>Follow</button>
+                            ? <button onClick={ () => {
+                                axios.delete( `https://social-network.samuraijs.com/api/1.0/follow/${item.id}`,{
+                                    withCredentials:true,
+                                    headers: {
+                                        'API-KEY': 'e8a9d0c3-7037-4553-b754-e3de2b89a09a'
+                                    }
+                                    }).then(
+                                        response => {
+                                            if(response.data.resultCode === 0) {
+                                                debugger
+                                                props.unFollow(item.id)
+                                            }
+                                        }
+                                )
+
+                                } }>Unfollow</button>
+                            : <button onClick={ () => { 
+                                axios.post( `https://social-network.samuraijs.com/api/1.0/follow/${item.id}`,{}, {
+                                    withCredentials:true,
+                                    headers: {
+                                        'API-KEY': 'e8a9d0c3-7037-4553-b754-e3de2b89a09a'
+                                    }
+                                    }).then(
+                                        response => {
+                                            if(response.data.resultCode === 0) {
+                                                debugger
+                                                props.follow(item.id)
+                                            }
+                                        }
+                                )
+
+                             } }>Follow</button>
                     }
                 </div>
             </span>

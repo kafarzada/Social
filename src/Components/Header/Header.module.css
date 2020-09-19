@@ -3,7 +3,7 @@
     grid-area: h;
     background-color:black;
     color: white;
-    text-align: center;
+    position: relative;
   }
 
 
@@ -11,3 +11,16 @@
     width: 50px;
   }
   
+
+  .loginBlock {
+    position: absolute;
+    right: 0px;
+    top: 10px;
+  }
+
+
+  .loginBlock  a {
+  color: white;
+  text-decoration: none;
+
+  }
